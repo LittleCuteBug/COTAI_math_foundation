@@ -1,0 +1,274 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono]{droidmono}
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+\linespread{1.3}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Lecture 2 Assignment Extra}
+
+\author{Nguyen Quang Huy}
+
+\date{07/04/2020}
+
+\maketitle
+
+\section*{P2.5}
+
+Với ma trận $A_{m*n}$ và ma trận đường chéo $P_{n*n}$ có đường chéo bằng $\{p_1,p_2,...p_n\}$ ta có:
+\begin{align}
+    \nonumber A*P &= \begin{bmatrix} a_{11} & a_{12} & \hdots & a_{1n} \\ 
+                        a_{21} & a_{22} & \hdots & a_{2n} \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{m1} & a_{m2} & \hdots & a_{mn}
+                        \end{bmatrix}
+        * \begin{bmatrix} p_1 & 0 & \hdots & 0\\
+                        0 & p_2 & \hdots & 0 \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        0 & 0 & \hdots & p_n
+                        \end{bmatrix}
+        \\
+    \nonumber     &= \begin{bmatrix} a_{11}*p_1 & a_{12}*p_2 & \hdots & a_{1n}*p_n \\ 
+                        a_{21}*p_1 & a_{22}*p_2 & \hdots & a_{2n}*p_n \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{m1}*p_1 & a_{m2}*p_2 & \hdots & a_{mn}*p_n
+                        \end{bmatrix}
+\end{align}
+Tương tự, với ma trận $A_{m*n}$ và ma trận đường chéo $P_{m*m}$ có đường chéo bằng $\{p_1,p_2,...p_m\}$ ta có:
+\begin{align}
+    \nonumber P*A &= \begin{bmatrix} p_1 & 0 & \hdots & 0\\
+                        0 & p_2 & \hdots & 0 \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        0 & 0 & \hdots & p_m
+                        \end{bmatrix}
+        * \begin{bmatrix} a_{11} & a_{12} & \hdots & a_{1n} \\ 
+                        a_{21} & a_{22} & \hdots & a_{2n} \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{m1} & a_{m2} & \hdots & a_{mn}
+                        \end{bmatrix}
+        \\
+    \nonumber     &= \begin{bmatrix} a_{11}*p_1 & a_{12}*p_1 & \hdots & a_{1n}*p_1 \\ 
+                        a_{21}*p_2 & a_{22}*p_2 & \hdots & a_{2n}*p_2 \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{m1}*p_m & a_{m2}*p_m & \hdots & a_{mn}*p_m
+                        \end{bmatrix}
+\end{align}
+Nhận xét: phép nhân ma trận $A_{m*n}*P_{n*n}$ scale mỗi cột của ma trận A với hệ số $p_i$, phép nhân ma trận $P_{m*m}*A_{m*n}$ scale mỗi hàng của ma trận A với hệ số $p_i$
+\section*{P2.6}
+Với $A \in R^{m*n}, B \in R^{n*p}$, ta có:
+\begin{align}
+    \nonumber AB &= \begin{matrix}\\ (i_1) \\ (i_2) \end{matrix}\begin{matrix}\begin{matrix}(j_1)&(j_2) \end{matrix}\\
+            \begin{bmatrix} [c|c]
+            A_{11} & A_{12}\\ \hline
+            A_{21} & A_{22}
+            \end{bmatrix} \end{matrix}
+        *\begin{matrix}\\ (k_1) \\ (k_2) \end{matrix}\begin{matrix}\begin{matrix}(l_1)&(l_2) \end{matrix}\\
+            \begin{bmatrix} [c|c]
+            B_{11} & B_{12}\\ \hline
+            B_{21} & B_{22}
+            \end{bmatrix} \end{matrix}\\
+    \nonumber    &= 
+    \begin{matrix} \\ (i_1) \\ (i_2) \end{matrix}
+    \begin{matrix}
+            \begin{matrix}
+                (l_1) & & & & & & & & & (l_2)
+            \end{matrix}\\
+            \begin{bmatrix} [c|c]
+            A_{11}*B_{11}+A_{12}*B_{21} & A_{11}*B_{12}+A_{12}*B_{22}\\ \hline
+            A_{21}*B_{11}+A_{22}*B_{21} & A_{21}*B_{12}+A_{22}*B_{22}
+            \end{bmatrix}
+    \end{matrix}
+\end{align}
+\textbf{Nhận xét:}\\
+Để thực hiện phép nhân ma trận, các kích thước của các ma trận con phải thỏa mãn:
+\begin{itemize}
+    \item $i_1+i_2=m$, $j_1+j_2=n$
+    \item $k_1+k_2=n$, $l_1+l_2=p$
+    \item $j_1=k_1$, $j_2=k_2$
+\end{itemize}
+\section*{P2.7}
+Trong không gian 2D:
+$$
+    \nonumber ReflectOrigin()*Translate(20,10)*Rotate(30^o) = \begin{bmatrix}
+        -cos(30^o) & -sin(30^o) & -20 \\
+        sin(30^o) & -cos(30^o) & -10 \\
+        0 & 0 & 1
+    \end{bmatrix}
+$$
+Trong không gian 3D:
+$$
+    \nonumber ReflectOrigin()*Translate(20,10,0)*RotateZ(30^o) = \begin{bmatrix}
+        -cos(30^o) & -sin(30^o) & 0 & -20 \\
+        sin(30^o) & -cos(30^o) & 0 & -10 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1 
+    \end{bmatrix}
+$$
+\href{https://colab.research.google.com/drive/11goRiQbw1PLvmmVFmF0eqNn7gru4-Ozw}{Code link 
+here}\\
+\href{https://drive.google.com/open?id=1IOk26Iip__HIKyEfTlNXBgDS0Sd6v_dP}{Gif P2.7.1}\\
+\href{https://drive.google.com/open?id=1c8WvxVmPRdflaSU3IE3rp4fnA8AFg8kR}{Gif P2.7.2}
+\section*{P2.8}
+Để giảm chiều dữ liệu: $\Bar{z} \xrightarrow{A} z = (1,w_1,w_2,..w_k)^T$ thì ma trận $A_{(k+1)*(n+1)}$ có dạng
+$
+    A = \begin{bmatrix}[c|c]
+        \bar{I}_{(k+1)*(k+1)} & \bar{0}_{(k+1)*(n-k)}
+    \end{bmatrix}
+$
+$$
+    A*z = \begin{bmatrix} [cccc|ccc]
+    1 & 0 & \hdots & 0 & 0 & \hdots & 0\\
+    0 & 1 & \hdots & 0 & 0 & \hdots & 0\\
+    \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \hdots & 1 & 0 & \hdots & 0
+    \end{bmatrix}
+    * 
+    \begin{bmatrix}
+    1\\w_1\\w_2\\ \vdots \\ w_n
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    1\\w_1\\w_2\\ \vdots \\ w_k
+    \end{bmatrix}
+$$
+\section*{P2.9}
+Xét ma trận $A \in R^{m*n}$:
+Với mọi x thuộc Ker(A), ta có $ A*x = \bar{0}\\
+    \xrightarrow{} A^T*A*x = \bar{0}\\
+    \xrightarrow{} x \in Ker(A^T*A) \hfill \textit{(1)} \\
+$
+Với mọi x thuộc $Ker(A^T*A)$, ta có $ A^T*A*x = \bar{0}\\
+    \xrightarrow{} x^T*A^T*A*x = \bar{0}\\
+    \xrightarrow{} (A*x)^T*A*x = \bar{0}\\
+    \xrightarrow{} A*x = \bar{0}\\
+    \xrightarrow{} x \in Ker(A) \hfill \textit{(2)}\\ 
+$
+Từ (1) và (2) ta có $Ker(A^T*A) = Ker(A) \\ 
+\xrightarrow{} Nullity(A^T*A) = Nullity(A)$\\
+Mặt khác ta có $A \in R^{m*n}$ và $A^T*A \in R^{n*n} \\ 
+\xrightarrow{} n - Nullity(A^T*A) = n - Nullity(A)$ hay $Rank(A^T*A) = Rank(A)$\\
+Chứng minh tương tự ta có $Rank(A*A^T) = Rank(A^T)$\\
+Theo kết quả P2.11: $Rank(A) = Rank(A^T)$\\
+$\xrightarrow{} Rank (A^T*A) = Rank(A) = Rank(A^T) = Rank(A*A^T)$
+
+\section*{P2.10}
+\subsection*{Chứng minh $(A*B*C)^{-1}=C^{-1}*B^{-1}*A^{-1}$}
+Ta có $(A*B*C)^{-1}*(A*B*C) = I$ và $C^{-1}*B^{-1}*A^{-1}*A*B*C = I$\\
+Suy ra $(A*B*C)^{-1}*(A*B*C) = C^{-1}*B^{-1}*A^{-1}*A*B*C$\\
+$\xrightarrow{}(A*B*C)^{-1}*A*B*C*C^{-1}*B^{-1}*A^{-1} = C^{-1}*B^{-1}*A^{-1}*A*B*C*C^{-1}*B^{-1}*A^{-1}$\\
+$\xrightarrow{}(A*B*C)^{-1}=C^{-1}*B^{-1}*A^{-1}$
+\subsection*{Chứng minh $A^{-1^T} = A^{T^{-1}} := A^{-T}$}
+Ta có: $A^{T^{-1}}*A^T=I$ và $A^{-1^T}*A^T= (A*A^{-1})^T = I^T = I$ \\
+$\xrightarrow{}A^{T^{-1}}*A^T = A^{-1^T}*A^T$ \\
+$\xrightarrow{}A^{T^{-1}}*A^T*A^{T^{-1}} = A^{-1^T}*A^T*A^{T^{-1}}$ \\
+$\xrightarrow{}A^{T^{-1}} = A^{-1^T}$ 
+
+\section*{P2.11}
+\subsection*{Chứng minh $Rank(A)<min(m,n)$}
+Xét ma trận $A_{m*n}$, ta có $Rank(A) = Dim(img(A))$ với $img(A) = \{x|A*x!=\bar{0},x \in R^n\}$. \\
+Do $img(A) \subseteq R^n \xrightarrow{} Rank(A) <= n \hfill \textit{(1)}$\\ 
+Do $img(A) = span(a_1,a_2,..a_m)$ với $a_i$ là hàng i của A $\xrightarrow{} Rank(A) <= m\hfill \textit{(2)}$\\
+Từ (1) và (2) $\xrightarrow{} Rank(A)<min(m,n)$\\
+Tương tự cho  $Rank(A^T)<min(m,n)$
+\subsection*{Chứng minh $Rank(A) = Rank(A^T)$}
+Điều này tương đương với việc chứng minh$ dim(Col(A)) = dim(Row(A)$\\
+Gọi $B = b_1,b_2,...b_p$ với $u_i \in R^m$ là basis vector của Col(A)\\
+Ta có $A = B_{m*p}*W_{p*n}$. 
+\\ Do mỗi hàng của A đều là tổ hợp tuyến tính của p vector là các hàng của W\\
+$\xrightarrow{} Row(A)\subseteq Span(w_1,w_2..w_p)$ với $w_i$ là hàng i của W\\
+$\xrightarrow{} Dim(Row(A)) <= Dim(Col(A))$\\
+Tương tự $\xrightarrow{} Dim(Row(A)) >= Dim(Col(A))$\\
+$\xrightarrow{} Dim(Row(A)) = Dim(Col(A))$
+\end{document}

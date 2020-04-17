@@ -1,0 +1,418 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono]{droidmono}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\geometry{left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+
+\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Lecture \textnumero{}1}
+\cfoot{}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Lecture 1 Assignment}
+
+\author{Nguyen Quang Huy}
+
+\date{24/03/2020}
+
+\maketitle
+
+\section*{P1.3}
+Ta có:
+        $$
+            x_{new_1} = (1-\alpha) * x_{old} + \alpha * x_{update_1} 
+        $$
+        $$
+            x_{new_2} = (1-\alpha) * x_{new_1} + \alpha * x_{update_2}
+        $$
+suy ra:
+        $$
+            x_{new_2} = (1-\alpha) * [(1-\alpha) * x_{old} + \alpha * x_{update_1}] + \alpha * x_{update_2}
+        $$
+        $$
+            x_{new_2} = (1-\alpha)^2 * x_{old} + (1-\alpha)*\alpha*x_{update_1} + \alpha * x_{update_2}
+        $$
+tổng quát
+        $$
+            x_{new_n} = (1-\alpha)^n * x_{old} + \sum\limits_{i=1}^n [(1-\alpha)^{n-i}*\alpha*x_{update_i}]
+        $$
+Từ đó ta thấy $x_{update}$ có tác động vào hàm số theo cấp số mũ
+\section*{P1.4}
+10 tiền đề để chứng minh 1 không gian là một không gian vector:
+\begin{itemize}
+\begin{multicols}{2}
+    \item $u + v \in V$  
+    \item $u+v = v+u$
+    \item $u+v+w = u+(v+w)$
+    \item $u+\overline{0} = u$ 
+    \item $u+(-u) = \overline{0}$ 
+\columnbreak
+    \item $a*u \in V $
+    \item $a*(u+v) = a*u+a*v$
+    \item $(a+b)*u = a*u+b*u$
+    \item $c*(d*u) = (c*d)*u$
+    \item $1*u = u$
+\end{multicols}
+\end{itemize}
+
+\subsection*{Không gian tích Cartesian $R^n$}
+Không gian tích Cartesian (V) là không gian vector vì nó thỏa mãn đủ 10 tiền đề với \\
+    
+    $u+v=\{u_1+v_1,u_2+v_2,...u_n+v_n\} \in V$
+    
+    $-u = \{-u_1,-u_2,...-u_n\} \in V$
+    
+    $\overline{0} = \{0,0,...0\} \in V$
+    
+    $a*u = \{a*u_1,a*u_2,... a*u_n\} \in V $
+
+\subsection*{Ma trận $R^{m*n}$ \& ma trận đa chiều (data “tensors”) $R^{m*n*...q}$}
+Không gian các ma trận $R^{m*n}$ ($V_1$) và không gian các ma trận đa chiều $R^{m*n*...q}$ ($V_2$) đều là các không gian vector vì nó thỏa mãn đủ 10 tiền đề với
+    
+    $u+v= \begin{bmatrix} 
+            u_{1 1}+v_{1 1} & \dots & u_{1 n}+v_{1 n} \\
+            \vdots & \ddots & \vdots \\
+            u_{m 1}+v_{m 1} & \dots & u_{m n}+v_{m n} \\
+            \end{bmatrix}
+        \quad
+    \in V_1$
+    
+    $-u = \begin{bmatrix} 
+            -u_{1 1} & \dots & -u_{1 n} \\
+            \vdots & \ddots & \vdots \\
+            -u_{m 1} & \dots & -u_{m n} \\
+            \end{bmatrix}
+        \quad
+    \in V_1$
+    
+    $\overline{0} = \begin{bmatrix} 
+            0 & \dots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & 0 \\
+            \end{bmatrix}
+        \quad \in V_1$
+    
+    $a*u = \begin{bmatrix} 
+            a*u_{1 1} & \dots & a*u_{1 n} \\
+            \vdots & \ddots & \vdots \\
+            a*u_{m 1} & \dots & a*u_{m n} \\
+            \end{bmatrix}
+        \quad \in V_1 $
+        
+tương tự với($V_2$)
+
+\subsection*{Không gian tập hợp tất cả các hàm liên tục C[a,b] trên khoảng đóng [a,b]}
+Không gian tập hợp tất cả các hàm liên tục C[a,b] trên khoảng đóng [a,b] là không gian vector vì thỏa mãn đủ 10 tiền đề với
+
+    $u = f(u_1,u_2,..., u_n)$ với $x_i \in [a,b]$
+    
+    $u+v = f(u_1,u_2,... u_n) + f(v_1,v_2,... v_n)$  là một hàm liên tục trên [a,b]
+    
+    $-u = -f(u_1,u_2,..., u_n)$
+    
+    $\overline{0} = 0$
+    
+    $a*u = a*f(u_1,u_2,... u_n)$ là một hàm liên tục trên [a,b]
+    
+\subsection*{Không gian tập hợp tất cả các hàm đơn biến có bậc nhỏ hơn hoặc bằng n\\ $ P_n := \{ \sum\limits_{i=0}^n a_i*x^i \}$  }
+Không gian tập hợp tất cả các hàm đơn biến có bậc nhỏ hơn hoặc bằng n là không gian vector vì thỏa mãn đủ 10 tiền đề với
+    
+    $u+v =  \sum\limits_{i=0}^n (a_i+b_i)*x^i  \in P_n$ 
+    
+    $-u = \sum\limits_{i=0}^n -a_i*x^i  \in P_n$
+    
+    $\overline{0} = 0 \in P_n$
+    
+    $a*u = a*\sum\limits_{i=0}^n (a_i+b_i)*x^i  \in P_n$
+    
+\section*{P1.5}
+\subsection*{Không gian tọa độ dương}
+Không gian tọa độ dương V không phải là không gian vector vì:\\
+với $u \ne (0,0,..0) \in  V$ thì $-u \notin V$
+\subsection*{Không gian các Vector đơn vị}
+Không gian các vector đơn vị V không phải là không gian vector vì:\\
+với $u \in V$ thì $a*u \notin V$ với $a \ne 1$
+\subsection*{Không gian vĩ độ và kinh độ}
+Không gian vĩ độ và kinh độ V không phải là không gian vector vì:\\
+với $u, v \in V$, ta không thể áp dụng phép cộng và nhân
+\subsection*{Không gian đơn thức $f=x^k$}
+Không gian đơn thức $f=x^k$ không phải là không gian vector vì:
+với $u, v \in V$, ta không thể áp dụng phép cộng $u+v$
+
+\section*{P1.6}
+$L_1 = \{ w \in V : w = v+t*u, \forall t \in R \}$ 
+\\
+
+\section*{P1.7}
+\section*{P1.8}
+\section*{P1.9}
+\section*{P1.10}
+\section*{P1.11}
+\section*{P1.12}
+Cơ sở chính tắc của $R^d$ là
+$
+B = \begin{pmatrix}
+        \begin{bmatrix}
+        1\\
+        0\\
+        \vdots\\
+        0
+        \end{bmatrix}
+        ,
+         \begin{bmatrix}
+        0\\
+        1\\
+        \vdots\\
+        0
+        \end{bmatrix}
+        ,\dots
+         \begin{bmatrix}
+        0\\
+        0\\
+        \vdots\\
+        1
+        \end{bmatrix}
+    \end{pmatrix}
+$
+\\
+Cơ sở chính tắc của $R^{m*n}$ là
+$
+B = \begin{pmatrix}
+        \begin{bmatrix}
+        1 & 0 & \dots & 0\\
+        0 & 0 & \dots & 0\\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \dots & 0
+        \end{bmatrix}
+        ,
+        \begin{bmatrix}
+        0 & 1 & \dots & 0\\
+        0 & 0 & \dots & 0\\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \dots & 0
+        \end{bmatrix}
+        ,\dots
+         \begin{bmatrix}
+        0 & 0 & \dots & 0\\
+        0 & 0 & \dots & 0\\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \dots & 1
+        \end{bmatrix}
+    \end{pmatrix}
+$
+\\
+Cơ sở chính tắc của $P_n(R)$ là
+$
+B = ( 1,x,x^2,... x^n)
+$
+\section*{P1.13}
+"Tuyến tính" có nghĩa là mang tính chất "đường thẳng"\\
+=> "Tuyến tính" trong "tổ hợp tuyến tính" để chỉ hàm số n biến có thể biểu diễn dưới dạng đường thẳng trong không gian n+1 chiều tương ứng. Với mỗi bộ hệ số thì chỉ tương ứng với một giá trị, quan hệ của bộ hệ số với giá trị của hàm số thỏa mãn tính chất nhân và cộng:
+\\
+với bộ hệ số $a_1,a_2,...a_n \in R$ -> u và $b_1,b_2,...b_n \in R$ -> v thì ta có
+$$
+    k*a_1,k*a_2,...k*a_n \rightarrow k*u \quad \forall k \in R
+$$
+và
+$$
+    a_1+b_1,a_2+b_2,... a_n+b_n \rightarrow u+v
+$$
+\section*{P1.14}
+Gọi $X_B = [x_{b_1},x_{b_2},x_{b_3}] $ là tọa độ của X trong hệ cơ sở B\\
+Với A là cơ sở chính tắc của $R^3$\\
+Gọi $X_A = [x_{a_1},x_{a_2},x_{a_3}] $ là tọa độ của X trong hệ cơ sở A\\
+\\
+Ta đặt ma trận P là ma trận chuyển từ B sang A:\\
+$   P = \begin{bmatrix}
+        e_1;e_2;e_3
+        \end{bmatrix}
+    = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0\\
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0\\
+        0 & 0 & 1
+        \end{bmatrix}
+$\\
+Ta có công thức:
+$X_B * P = X_A $
+\section*{C1.1}
+
+\begin{lstlisting}[label={list:first},caption={sample = genData(N,d,'dist')}]
+def genData(N,d,dist)
+    
+\end{lstlisting}
+
+\section*{C1.2}
+
+\begin{lstlisting}[label={list:first},caption={avgSample(sample,w)}]
+import numpy as np
+data = np.random.randint(10,size = (5,4))
+>>> data = [[4 4 7 7]
+            [7 8 0 2]
+            [3 1 9 3]
+            [1 6 1 0]
+            [4 4 3 9]]
+weight = np.random.randint(100,size=5)
+>>> weight = [55 50 31 92 12]
+def avgSample(sample,weight,centralTendence):
+    if centralTendence == "mean":
+        weight = weight.reshape(weight.size,1)
+        return np.sum(np.multiply(sample,weight),axis = 0)/np.sum(weight)
+Avg = avgSample(data,weight,"mean")
+print(Avg)
+>>> Avg = [3.34583333 5.2125     3.3        2.85833333]
+\end{lstlisting}
+
+\section*{C1.3}
+\href{https://drive.google.com/file/d/1ytqk-ce6TFqLxoQVSYeg_LY-3LncnyKP/view?usp=sharing}{Jupyter Notebook}
+\section*{E1.1}
+Ta có ma trận mở rộng:
+$$
+\begin{bmatrix}
+     1 & 2 & 1 & | & 9\\
+     2 & 4 & 1 & | & 16\\
+     3 & 6 & 4 & | & 29
+\end{bmatrix}
+$$
+giải ma trận mở rộng bằng phương pháp khử Gauss-Johndan ta có:
+$$
+\begin{bmatrix}
+     1 & 2 & 0 & | & 7\\
+     0 & 0 & 1 & | & 2\\
+     0 & 0 & 0 & | & 0
+\end{bmatrix}
+$$
+=> Hệ phương trình có vô số nghiệm, họ nghiệm $(7-2*a,a,2)$ với $a \in R$ \\
+=> Vậy khẳng định vector $v = \begin{bmatrix}
+    9\\16\\29    
+\end{bmatrix} \in span(S) 
+$ là đúng
+\section*{E1.2}
+$S = \{v_1,v_2,... v_n\}$ là tập gồm các vector trong vector space V\\
+chứng minh (1)\\
+ta có
+\\ $span(S) = \{v: v=a_1*v_1+a_2*v_2+...+a_n*v_n \quad \forall a_1,a_2,...a_n \in R\}$
+\\ dễ thấy với $u, v \in span(S)$ thì $u+v,a*u \in span(S)$ và $\forall u \in span(s)$ thì $u \in V$
+\\ $=> span(s) \subset V$\\
+\\
+chứng minh (2)\\
+ta có\\
+W là không gian con của V chứa S như một tập con\\
+=> các vectors $v_1,v_2,... v_n$ đều thuộc W\\
+=> do tính chất của không gian vector, $v = a_1*v_1+a_2*v_2+...+a_n*v_n (\forall a_1,a_2,...a_n \in R) $ cũng thuộc W\\
+=> $span(S) \subset W$
+\section*{E1.3}
+Tập rỗng $\emptyset$ là độc lập tuyến tính vì mỗi vector trong tập rỗng đều ko thể biểu diễn đc dưới dạng tổ hợp tuyến tính của các vector còn lại.
+\section*{E1.4}
+Tập $\{0\}$ là phụ thuộc tuyến tính vì phương trình $a*\overline{0}=\overline{0}$ có vô số nghiệm không tầm thường.\\
+Bất kì tập vector nào chứa vector 0 thì đều phụ thuộc tuyến tính vì phương trình $a_1*\overline{0}+a_2*v_2+...a_n*v_n = \overline{0}$ có vô số nghiệm không tầm thường. 
+\section*{E1.5}
+Giả sử vector v có thể viết được dưới dạng biểu diễn tuyến tính qua B $=\{v_1,v_2,...v_n\}$ là basis của V với 2 bộ hệ số $\{a_1,a_2,...a_n\}$ và $\{b_1,b_2,...b_n\}$ thỏa mãn $\exists i \in \{1,...n\}$ sao cho $ b_i \ne a_i$, ta có:\\
+$$\sum\limits_{i=1}^n a_i*v_i = v$$
+và 
+$$\sum\limits_{i=1}^n b_i*v_i = v$$
+suy ra:
+$$\sum\limits_{i=1}^n (a_i-b_i)*v_i = \overline{0}$$
+do $\exists i \in \{1,...n\}$ sao cho $ b_i \ne a_i$, $(a_1-b_1, a_2-b_2,... a_n-b_n)$ là bộ nghiệm không tầm thường của phương trình $\sum\limits_{i=1}^n x_i*v_i = 0$
+\\ $\rightarrow$ B không phải là một basis
+\\ $\rightarrow$ Điều giả sử sai
+
+\section*{E1.6}
+
+
+% code from http://rosettacode.org/wiki/Fibonacci_sequence#Python
+
+
+
+\end{document}
